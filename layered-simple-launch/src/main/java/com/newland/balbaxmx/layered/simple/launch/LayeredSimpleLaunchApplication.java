@@ -5,8 +5,11 @@ import com.newland.balbaxmx.layered.simple.common.SpringBeanUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
-@SpringBootApplication(scanBasePackages = "com.newland.balbaxmx")
+@SpringBootApplication
+@ComponentScan(
+        basePackages = {"com.newland.balbaxmx"})
 public class LayeredSimpleLaunchApplication {
 
     public static void main(String[] args) {

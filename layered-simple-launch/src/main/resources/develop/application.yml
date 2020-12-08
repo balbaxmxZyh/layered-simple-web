@@ -4,7 +4,23 @@ server:
   port: 9999
 spring:
   main:
-        allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
+    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
+  redis:
+#    database: 0 # 单点--索引
+#    host: 127.0.0.1 # 单点--
+#    port: 6379 # 单点--
+#    password: 123456 # 单点-- 修改成对应自己的redis密码
+    prefix: blx-
+    password: tycj  # 密码
+    timeout: 3000ms #最小空闲连接
+    cluster:
+      nodes: 10.1.8.143:7000,10.1.8.143:7001,10.1.8.143:7002,10.1.8.144:7003,10.1.8.144:7004,10.1.8.144:7005
+      max-redirects: 3
+    lettuce:
+      pool:
+        max-active: 8 #最大连接数
+        max-idle: 8 #最大空闲连接
+        min-idle: 4  # 连接池中的最小空闲连接
 logging:
   config:
     classpath: log4j2.xml
