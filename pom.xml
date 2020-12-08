@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.newland.balbaxmx</groupId>
+    <artifactId>layered-simple-web</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>layered-simple-service</module>
+        <module>layered-simple-common</module>
+        <module>layered-simple-module</module>
+        <module>layered-simple-mapper</module>
+        <module>layered-simple-service-impl</module>
+        <module>layered-simple-launch</module>
+    </modules>
+
+
+    <dependencies>
+    </dependencies>
+</project>

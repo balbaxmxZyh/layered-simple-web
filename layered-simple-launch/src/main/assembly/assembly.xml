@@ -1,0 +1,63 @@
+
+<assembly>
+
+	<id>${env}</id>
+	<formats>
+		<format>zip</format>
+		<format>dir</format>
+	</formats>	
+	
+	<!--zip.gz压缩包下是否生成和项目名相同的根目录 -->
+	<includeBaseDirectory>true</includeBaseDirectory>
+	
+	<!-- 标签指定将scope范围内的jar包打包到指定目录  -->
+	<dependencySets>
+		<dependencySet>
+			<!--是否把本项目添加到依赖文件夹下 -->
+			<useProjectArtifact>false</useProjectArtifact>
+			<outputDirectory>lib/dependencys</outputDirectory>
+			<!--将scope为runtime的依赖包打包 -->
+			<scope>runtime</scope>
+		</dependencySet>
+	</dependencySets>
+
+	<!-- 标签指定要打包的目录.点对点打包,将某一个目录打包到某一个目录下,可以选择排除某些目录和包含某些目录  -->
+	<fileSets>
+		<fileSet>
+			<directory>src/main/assembly/bin</directory>
+			<outputDirectory>bin</outputDirectory>
+			<directoryMode>0755</directoryMode> <!--目录执行权限-->
+            <fileMode>0755</fileMode><!--文件执行权限-->
+			<filtered>true</filtered><!-- 是否替换脚本中占位符 -->
+		</fileSet>
+		<fileSet>
+			<directory>src/main/resources/${env}</directory>
+			<outputDirectory>conf</outputDirectory>
+			<directoryMode>0744</directoryMode>
+            <fileMode>0644</fileMode>
+			<filtered>true</filtered>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/assembly/logs</directory>
+			<outputDirectory>logs</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>target</directory>
+			<outputDirectory>lib</outputDirectory>
+			<includes>
+				<include>${project.artifactId}-${project.version}.jar</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+	
+	<!-- 标签指定是否将项目下的模块打包到指定目录,可以选择部分目录 -->
+	<moduleSets>
+        <moduleSet>
+            <binaries>
+                <outputDirectory>lib</outputDirectory>
+                <unpack>false</unpack>
+            </binaries>
+        </moduleSet>
+    </moduleSets>
+    
+</assembly>

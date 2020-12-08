@@ -1,0 +1,3 @@
+maven打包命令：
+develop:选择resources下属文件夹
+clean install -P [develop} -Dmaven.test.skip=true
