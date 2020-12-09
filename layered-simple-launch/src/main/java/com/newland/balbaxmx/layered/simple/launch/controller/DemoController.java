@@ -2,11 +2,13 @@ package com.newland.balbaxmx.layered.simple.launch.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.newland.balbaxmx.layered.simple.common.OrikaBeanUtils;
 import com.newland.balbaxmx.layered.simple.common.resp.ResMessage;
 import com.newland.balbaxmx.layered.simple.launch.annotations.AutoIdempotent;
 import com.newland.balbaxmx.layered.simple.module.User;
 import com.newland.balbaxmx.layered.simple.service.TokenService;
 import com.newland.balbaxmx.layered.simple.service.UserService;
+import com.newland.balbaxmx.layered.simple.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,7 +55,8 @@ public class DemoController {
     public String list(){
         PageHelper.startPage(1,10);
         List<User> list = userService.selectAll();
-        PageInfo<User> pageInfo = new PageInfo<>(list);
+        List<UserVo> vo = OrikaBeanUtils.copyList(list,User.class,UserVo.class,true);
+        PageInfo<UserVo> pageInfo = new PageInfo<>(vo);
         System.out.println(pageInfo);
         return "succeed";
     }
